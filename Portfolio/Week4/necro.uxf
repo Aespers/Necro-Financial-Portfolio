@@ -1,0 +1,55 @@
+<diagram program="umletino" version="15.1"><zoom_level>11</zoom_level><element><id>UMLClass</id><coordinates><x>514</x><y>119</y><w>231</w><h>154</h></coordinates><panel_attributes>Necromancer
+--
+-__id: int
+-__name: str
+-__resources: Resources
+-__collection: List[Undead]
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>811</x><y>350</y><w>297</w><h>176</h></coordinates><panel_attributes>Undead
+--
+-__id: int
+-__name: str
+-__level: str
+-__health: int
+-__power: int
+--
++ level_up(): None
++__str__(): str
++__init__(): id, name, level, health, power: None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>74</x><y>317</y><w>341</w><h>176</h></coordinates><panel_attributes>Ritual
+--
+- __ritual_name: str
+- __undead_name: str
+- __health: int
+- __power: int
+- __necrotic, __spirit, __bone, __flesh, __ectoplasm: int
+--
++ check_ritual_require(resource: Resources): bool
++ consume_ritual_resource(resource: Resources): bool
++ create_undead(id: int): Undead
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>459</x><y>603</y><w>341</w><h>187</h></coordinates><panel_attributes>Resources
+--
+- __necrotic: int
+- __spirit: int
+- __bone: int
+- __flesh: int
+- __ectoplasm: int
+--
++ collect(necrotic, spirit, bone, flesh, ectoplasm): None
++ require(necrotic, spirit, bone, flesh, ectoplasm): bool
++ spend(necrotic, spirit, bone, flesh, ectoplasm): bool
++ __str__(): str</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>734</x><y>185</y><w>209</w><h>187</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+&lt; owns
+m2=0..*</panel_attributes><additional_attributes>10;20;150;20;150;150</additional_attributes></element><element><id>Relation</id><coordinates><x>624</x><y>262</y><w>77</w><h>363</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+m1=0...*
+m2=1
+owns &gt;</panel_attributes><additional_attributes>10;310;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>404</x><y>262</y><w>187</w><h>187</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=0...*
+&lt; casts</panel_attributes><additional_attributes>110;10;110;140;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>239</x><y>20</y><w>770</w><h>352</h></coordinates><panel_attributes>lt=-&gt;&gt;&gt;
+m1=0...*
+m2=1
+summons &gt;</panel_attributes><additional_attributes>10;270;10;20;670;20;670;300</additional_attributes></element><element><id>Relation</id><coordinates><x>294</x><y>482</y><w>187</w><h>264</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-
+m1=1...*
+m2=1...*
+consumes &gt;</panel_attributes><additional_attributes>150;210;10;210;10;10</additional_attributes></element></diagram>
