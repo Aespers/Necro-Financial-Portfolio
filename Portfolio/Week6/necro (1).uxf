@@ -1,0 +1,70 @@
+<diagram program="umletino" version="15.1"><zoom_level>9</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>360</x><y>126</y><w>189</w><h>126</h></coordinates><panel_attributes>Necromancer
+--
+- id: int
+- name: str
+- resource_object: Resources
+- collection: list[Undead]
+--
++ cast_ritual(ritual: Ritual, undead_id: int): bool
++ dismiss_undead(undead_id: int): bool
++ level_undead(undead_id: int)
+fontsize=8</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>630</x><y>315</y><w>144</w><h>126</h></coordinates><panel_attributes>Undead
+--
+- id: int
+- name: str
+- level: int
+- health: int
+- power: int
+--
++ level_up()
++ command(): str | None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>288</y><w>297</w><h>144</h></coordinates><panel_attributes>Ritual
+--
+- ritual_name: str
+- undead_name: str
+- health: int
+- power: int
+- necrotic, spirit, bone: int
+- flesh, ectoplasm: int
+- undead_type: type[Undead]
+--
++ check_ritual_require(resource: Resources): bool
++ consume_ritual_resource(resource: Resources): bool
++ create_undead(undead_id: int): Undead | None
+fontsize=9</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>315</x><y>522</y><w>297</w><h>153</h></coordinates><panel_attributes>Resources
+--
+- necrotic: int
+- spirit: int
+- bone: int
+- flesh: int
+- ectoplasm: int
+--
++ collect(necrotic: int, spirit: int, bone: int, flesh: int, ectoplasm: int)
++ require(necrotic: int, spirit: int, bone: int, flesh: int, ectoplasm: int): bool
++ spend(necrotic: int, spirit: int, bone: int, flesh: int, ectoplasm: int): bool
+fontsize=8</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>540</x><y>189</y><w>171</w><h>144</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=0..1
+m2=0..*
+controls &gt;</panel_attributes><additional_attributes>10;10;150;10;150;140</additional_attributes></element><element><id>Relation</id><coordinates><x>450</x><y>243</y><w>63</w><h>297</h></coordinates><panel_attributes>lt=-&gt;&gt;&gt;&gt;&gt;
+m1=1
+m2=1
+owns</panel_attributes><additional_attributes>10;310;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>288</x><y>243</y><w>153</w><h>153</h></coordinates><panel_attributes>lt=.&gt;
+&lt; casts</panel_attributes><additional_attributes>110;10;110;140;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>135</x><y>45</y><w>630</w><h>288</h></coordinates><panel_attributes>lt=.&gt;
+creates &gt;</panel_attributes><additional_attributes>10;270;10;20;670;20;670;300</additional_attributes></element><element><id>Relation</id><coordinates><x>180</x><y>423</y><w>153</w><h>216</h></coordinates><panel_attributes>lt=&lt;.
+uses</panel_attributes><additional_attributes>150;210;10;210;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>684</x><y>504</y><w>117</w><h>81</h></coordinates><panel_attributes>CursedUndead
+--
++ command(): str
++ combat_style()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>765</x><y>153</y><w>117</w><h>81</h></coordinates><panel_attributes>WarriorUndead
+--
++ command(): str
++ combat_style()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>720</x><y>432</y><w>27</w><h>90</h></coordinates><panel_attributes>lt=-&gt;&gt;</panel_attributes><additional_attributes>10;80;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>765</x><y>225</y><w>72</w><h>153</h></coordinates><panel_attributes>lt=-&gt;&gt;
+</panel_attributes><additional_attributes>60;10;60;150;10;150</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1017</x><y>72</y><w>117</w><h>81</h></coordinates><panel_attributes>SkeletonWarrior
+--
++ command(): str</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>891</x><y>351</y><w>117</w><h>81</h></coordinates><panel_attributes>PutridZombie
+--
++ command(): str</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>765</x><y>387</y><w>144</w><h>27</h></coordinates><panel_attributes>lt=-&gt;&gt;</panel_attributes><additional_attributes>140;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>855</x><y>99</y><w>180</w><h>72</h></coordinates><panel_attributes>lt=-&gt;&gt;</panel_attributes><additional_attributes>180;10;10;10;10;60</additional_attributes></element><element><id>UMLClass</id><coordinates><x>873</x><y>504</y><w>117</w><h>81</h></coordinates><panel_attributes>VengefulGhost
+--
++ command(): str</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>792</x><y>531</y><w>99</w><h>27</h></coordinates><panel_attributes>lt=-&gt;&gt;</panel_attributes><additional_attributes>90;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>981</x><y>216</y><w>117</w><h>81</h></coordinates><panel_attributes>PhantomGuardian
+--
++ command(): str</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>846</x><y>225</y><w>153</w><h>81</h></coordinates><panel_attributes>lt=-&gt;&gt;</panel_attributes><additional_attributes>150;70;10;70;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>666</x><y>630</y><w>162</w><h>99</h></coordinates><panel_attributes>DeathKnight
+--
++ combat_style()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>720</x><y>576</y><w>27</w><h>72</h></coordinates><panel_attributes>lt=-&gt;&gt;</panel_attributes><additional_attributes>10;60;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>819</x><y>27</y><w>369</w><h>675</h></coordinates><panel_attributes>lt=-&gt;&gt;</panel_attributes><additional_attributes>10;730;390;730;390;10;10;10;10;140</additional_attributes></element></diagram>
