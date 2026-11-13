@@ -38,6 +38,7 @@ def main() -> None:
         ("deposit", 200), ("withdrawal", 1000)
     ]
     assert all(item.Status == "Processed" for item in history)
+    # Clear the copy to check that the account keeps its records.
     history.clear()
     assert account.transaction_count() == 2
     print(account)

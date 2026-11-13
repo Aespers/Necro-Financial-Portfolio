@@ -2,6 +2,7 @@ from undead import Undead
 
 
 class CursedUndead(Undead):
+    """Represent an undead with a cursed command."""
     def __init__(self, id, name: str, health: int, power: int):
         super().__init__(id, name, health, power)
 

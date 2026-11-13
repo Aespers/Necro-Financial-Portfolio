@@ -21,6 +21,7 @@ class SavingsAccount(Account):
     InterestRate = property(get_interest_rate)
 
     def valid_withdrawal(self, amount: int | float) -> bool:
+        """Check that enough money will remain after the withdrawal."""
         if not super().valid_withdrawal(amount):
             return False
         if self.Balance - amount < self.MINIMUM_BALANCE:

@@ -12,6 +12,7 @@ import lib as lib
 
 class Ritual:
 
+    """Store the cost and starting stats for summoning an undead."""
     def __init__(self, ritual_name: str, undead_name: str, health: int, power: int, necrotic: int, spirit: int, bone: int, flesh: int, ectoplasm: int, undead_type: type[Undead]) -> None:
         self.__ritual_name = ritual_name if lib.is_valid_string(
             ritual_name) else "Error ritual name"
@@ -79,10 +80,7 @@ class Ritual:
     undead_type = property(get_undead_type)
 
     def check_ritual_require(self, resource: Resources) -> bool:
-        """
-        Checks if the entered parameter is a type resource
-        Than checks if the resources meets the requirement calling the Resource.require() method, returns a boolean
-        """
+        """Check whether the resources can cover the ritual cost."""
         if isinstance(resource, Resources):
             return resource.require(necrotic=self.__necrotic,
                                     spirit=self.__spirit,
@@ -92,10 +90,7 @@ class Ritual:
         return False
 
     def consume_ritual_resource(self, resource: Resources) -> bool:
-        """
-        Checks if the entered parameter is a type resource
-        Consumes the resource with the Resource.spend() method, returns a bool if resources are successfully spent
-        """
+        """Pay for the ritual and return True if payment succeeds."""
         if isinstance(resource, Resources):
             return (
                 resource.spend(necrotic=self.__necrotic,
@@ -106,11 +101,10 @@ class Ritual:
 
         return False
 
-    # Creates the undead object, only gets the id, does not consume the resource
     def create_undead(self, undead_id: int) -> Undead:
-        """
-        Creates the undead object, the undead id is manually entered.
-        Checks if the id is a valid integer using the quantity checker in lib, it checks quantity so the id do not go below 0
+        """Create the stored type of undead with the given ID.
+
+        Return None for an invalid ID. No resources are spent here.
         """
 
         if lib.is_valid_quantity(undead_id, 1):

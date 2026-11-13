@@ -43,6 +43,7 @@ class Client:
         return f"Client(client_num={self.ClientNum})"
 
     def add_account(self, account) -> None:
+        """Add this client's account if the number is not in use."""
         if not isinstance(account, Account):
             print("Only Account objects can be added!")
         elif account.ClientNum != self.__client_num:
@@ -53,6 +54,7 @@ class Client:
             self.__accounts[account.AccountNum] = account
 
     def get_account(self, account_num: int) -> Account | None:
+        """Find an account by number. Return None if it is not found."""
         if type(account_num) is not int:
             return None
         return self.__accounts.get(account_num)

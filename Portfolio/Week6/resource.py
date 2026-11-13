@@ -3,6 +3,7 @@ import lib as lib
 
 class Resources:
 
+    """Store the five kinds of resources used by rituals."""
     def __init__(self, necrotic: int, spirit: int, bone: int, flesh: int, ectoplasm: int) -> None:
         self.__necrotic = necrotic if lib.is_valid_quantity(
             necrotic) else lib.MINIMUM_QUANTITY
@@ -40,9 +41,9 @@ class Resources:
     ectoplasm = property(get_ectoplasm)
 
     def collect(self, necrotic: int = 0, spirit: int = 0, bone: int = 0, flesh: int = 0, ectoplasm: int = 0) -> None:
-        """
-        Takes the parameter as the amount of resources that are being collected.
-        Increments the amount of resource that are being collected.
+        """Add each valid amount to the matching resource.
+
+        Report invalid amounts and still check the other amounts.
         """
 
         if lib.is_valid_quantity(necrotic, lib.MINIMUM_QUANTITY):
@@ -71,9 +72,9 @@ class Resources:
             print("Invalid amount of ectoplasm")
 
     def require(self, necrotic: int = 0, spirit: int = 0, bone: int = 0, flesh: int = 0, ectoplasm: int = 0) -> bool:
-        """
-        Checks if the amount of resources are enough with setting a flag, turning the flag if any of the resource entered is invalid, or when the resource is not enough.
-        Returns the flag as a boolean
+        """Check that every requested amount is valid and available.
+
+        Report any shortages without spending resources.
         """
 
         enough = True
@@ -95,9 +96,9 @@ class Resources:
         return enough
 
     def spend(self, necrotic: int = 0, spirit: int = 0, bone: int = 0, flesh: int = 0, ectoplasm: int = 0) -> bool:
-        """
-        Spends the resource, subtract the amount of resources by the parameter.
-        Checks if the amount of resources that needs to be spent is valid, with the require() function.
+        """Spend the resources only if all amounts are available.
+
+        Return False and leave resources unchanged if the check fails.
         """
 
         if self.require(necrotic, spirit, bone, flesh, ectoplasm):

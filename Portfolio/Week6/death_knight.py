@@ -4,6 +4,7 @@ from warrior_undead import WarriorUndead
 
 class DeathKnight(CursedUndead, WarriorUndead):
 
+    """Combine cursed and warrior undead with its own stat limits."""
     MIN_HEALTH = 10
     MAX_HEALTH = 500
     MIN_POWER = 50

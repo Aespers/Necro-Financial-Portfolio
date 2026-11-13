@@ -4,6 +4,7 @@ from abc import ABC, abstractmethod
 
 class Undead:
     # constants for undead
+    """Store the shared stats and level rules for summoned undead."""
     MIN_HEALTH = 10
     MAX_HEALTH = 1000
 
@@ -30,7 +31,7 @@ class Undead:
         return f"ID: {self.__id}\nName: {self.__name}\nLevel: {self.__level}\nCurrent Health: {self.__health}/{self.MAX_HEALTH}(Max)\nCurrent Power: {self.__power}/{self.MAX_POWER}(Max)"
 
     def get_id(self):
-        '''Gets the if of the undead'''
+        """Return the ID of the undead."""
         return self.__id
 
     def get_name(self):
@@ -56,10 +57,10 @@ class Undead:
     power = property(get_power)
 
     def level_up(self) -> None:
-        '''
-        Level up the undead, using the constants declared above.
-        Checks if the undead has reached max level, prints a message if max level is reached.
-        '''
+        """Raise level, health and power if below the level limit.
+
+        Health and power stop at the limits for this type of undead.
+        """
         if self.__level < self.MAX_LEVEL:
             self.__level += self.LEVEL_GAIN
 
@@ -75,5 +76,5 @@ class Undead:
 
     @abstractmethod
     def command(self):
-        '''A method prototype of command'''
+        """Provide the method that each undead type can override."""
         pass

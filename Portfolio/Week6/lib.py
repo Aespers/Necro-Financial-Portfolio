@@ -8,7 +8,7 @@ MAX_UNDEAD = 100
 
 # This function is used to verify integer quantity
 def is_valid_quantity(value, minimum=MINIMUM_QUANTITY) -> bool:
-    '''Returns a True or False, to check if the parameter is a valid quantity'''
+    """Check for an integer at or above the minimum."""
     return (
         isinstance(value, int)
         and not isinstance(value, bool)
@@ -19,7 +19,7 @@ def is_valid_quantity(value, minimum=MINIMUM_QUANTITY) -> bool:
 
 
 def is_valid_string(string) -> bool:
-    '''Returns a True or False, checks if the parameter is a valid string'''
+    """Check that the value is a string with some text."""
     return (
         isinstance(string, str)
         and string.strip() != ""
@@ -29,7 +29,7 @@ def is_valid_string(string) -> bool:
 
 
 def is_valid_integer(value) -> bool:
-    '''Returns a True or False, checks if the parameter is a type integer'''
+    """Check for an integer without accepting booleans."""
 
     return (
         isinstance(value, int)
@@ -40,7 +40,7 @@ def is_valid_integer(value) -> bool:
 
 
 def find_undead(undead_id: int, collection_list: list) -> bool:
-    '''Goes through the undead list, and finds the undead by the id, and returns the undead'''
+    """Return the undead with this ID, or False if none is found."""
 
     for i in collection_list:
         if undead_id == i.id:

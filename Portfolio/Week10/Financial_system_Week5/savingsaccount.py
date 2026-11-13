@@ -22,6 +22,10 @@ class SavingsAccount(Account):
     InterestRate = property(get_interest_rate)
 
     def valid_withdrawal(self, amount: int | float) -> bool:
+        """Raise if the withdrawal leaves less than the minimum balance.
+
+        Check the amount and available balance first.
+        """
         super().valid_withdrawal(amount)
         if self.Balance - amount < self.MINIMUM_BALANCE:
             raise WithdrawalError(

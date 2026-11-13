@@ -38,6 +38,7 @@ class Account(ABC):
         return self.__client_num
 
     def get_transaction_collection(self) -> list[Transaction]:
+        """Return a copy of the transaction history in order."""
         return self.__transaction_collection.copy()
 
     AccountNum = property(get_account_num)
@@ -63,6 +64,7 @@ class Account(ABC):
 
     @staticmethod
     def valid_amount(amount: int | float, allow_zero: bool = False) -> bool:
+        """Check for a finite number and allow zero when requested."""
         if type(amount) not in (int, float):
             return False
         if isinstance(amount, float) and not isfinite(amount):
@@ -70,6 +72,10 @@ class Account(ABC):
         return amount >= 0 if allow_zero else amount > 0
 
     def deposit(self, amount: int | float) -> bool:
+        """Add the amount and record the deposit.
+
+        Return False and leave the balance and history unchanged.
+        """
         if not self.valid_amount(amount):
             print("Deposit amount must be a positive number.")
             return False
@@ -78,14 +84,21 @@ class Account(ABC):
         return True
 
     def withdrawal(self, amount: int | float) -> bool:
+        """Withdraw the amount and record the transaction.
+
+        Return False without changing the balance or transaction history
+        if the withdrawal is rejected.
+        """
         if not self.valid_withdrawal(amount):
             return False
+        # Wait for the account checks before changing the balance.
         self.__balance -= amount
         self.__record_transaction("withdrawal", amount)
         return True
 
     @abstractmethod
     def valid_withdrawal(self, amount: int | float) -> bool:
+        """Return True if the balance covers the valid amount."""
         if not self.valid_amount(amount):
             print("Withdrawal amount must be a positive number.")
             return False

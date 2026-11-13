@@ -8,6 +8,7 @@ class EverydayAccount(Account):
     WITHDRAWAL_LIMIT = 5000
 
     def valid_withdrawal(self, amount: int | float) -> bool:
+        """Raise if a valid withdrawal exceeds the limit."""
         super().valid_withdrawal(amount)
         if amount > self.WITHDRAWAL_LIMIT:
             raise WithdrawalError(
