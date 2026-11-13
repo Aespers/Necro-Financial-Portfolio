@@ -1,0 +1,107 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text>Finance System — Week 10</help_text><element><id>UMLClass</id><coordinates><x>0</x><y>165</y><w>355</w><h>372</h></coordinates><panel_attributes>Client
+--
+- client_num: int
+- name: str
+- phone_num: str
+- date_of_join: str
+- age: int
+- active: bool
+- preferred_branch: Branch | None
+- accounts: dict[int, Account]
+--
++ add_account(account: Account)
++ get_account(account_num: int): Account | None
++ require_account(account_num: int): Account
++ get_contact(): str
++ set_contact(phone_num: str)
++ get_preferred_branch(): Branch | None
++ set_preferred_branch(preferred_branch: Branch)
++ get_client_num(): int
++ get_name(): str
++ get_date_of_join(): str
++ get_age(): int
+fontsize=12</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>505</x><y>165</y><w>420</w><h>324</h></coordinates><panel_attributes>/Account/
+--
+- account_num: int
+- account_type: str
+- balance: int | float
+- client_num: int
+- transaction_collection: list[Transaction]
+--
++ get_account_num(): int
++ get_account_type(): str
++ get_balance(): int | float
++ get_client_num(): int
++ get_transaction_collection(): list[Transaction]
++ transaction_count(): int
+- record_transaction(kind: str, amount: int | float)
+_+ valid_amount(amount: int | float, allow_zero: bool = False): bool_
++ deposit(amount: int | float): bool
++ withdrawal(amount: int | float): bool
+/+ valid_withdrawal(amount: int | float): bool/
+fontsize=12</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>30</x><y>663</y><w>295</w><h>245</h></coordinates><panel_attributes>Branch
+--
+- branch_num: int
+- branch_name: str
+- location: str
+- phone_num: str
+- status: str
+--
++ open_branch()
++ close_branch()
++ get_phone_num(): str
++ set_phone_num(phone_num: str)
++ get_branch_num(): int
++ get_branch_name(): str
++ get_location(): str
++ get_status(): str
+fontsize=12</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>530</x><y>663</y><w>370</w><h>224</h></coordinates><panel_attributes>Transaction
+--
+- type: str
+- amount: int | float
+- description: str
+- status: str
+--
++ get_amount(): int | float
++ get_type(): str
++ get_status(): str
++ get_description(): str
++ set_description(description: str)
++ process_transaction()
++ cancel_transaction()
+fontsize=12</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>459</x><y>0</y><w>281</w><h>98</h></coordinates><panel_attributes>SavingsAccount
+--
+_+ MINIMUM_BALANCE: int = 1000_
+- interest_rate: float
+--
++ get_interest_rate(): float
++ valid_withdrawal(amount: int | float): bool
+fontsize=12</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>790</x><y>0</y><w>281</w><h>77</h></coordinates><panel_attributes>EverydayAccount
+--
+_+ WITHDRAWAL_LIMIT: int = 5000_
+--
++ valid_withdrawal(amount: int | float): bool
+fontsize=12</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1300</x><y>5</y><w>171</w><h>45</h></coordinates><panel_attributes>«Python»
+Exception
+fontsize=12</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1300</x><y>155</y><w>171</w><h>48</h></coordinates><panel_attributes>«exception»
+FinanceError
+fontsize=12</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1090</x><y>324</y><w>202</w><h>48</h></coordinates><panel_attributes>«exception»
+WithdrawalError
+fontsize=12</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1090</x><y>491</y><w>202</w><h>48</h></coordinates><panel_attributes>«exception»
+InvalidAmountError
+fontsize=12</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1090</x><y>720</y><w>202</w><h>48</h></coordinates><panel_attributes>«exception»
+AccountNotFoundError
+fontsize=12</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>343</x><y>253</y><w>180</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=0..1
+m2=0..*
+has &gt;</panel_attributes><additional_attributes>12;24;162;24</additional_attributes></element><element><id>Relation</id><coordinates><x>165</x><y>523</y><w>70</w><h>160</h></coordinates><panel_attributes>lt=-&gt;
+m1=0..*
+m2=0..1
+prefers</panel_attributes><additional_attributes>12;14;12;140</additional_attributes></element><element><id>Relation</id><coordinates><x>693</x><y>475</y><w>70</w><h>210</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*
+records</panel_attributes><additional_attributes>12;14;12;188</additional_attributes></element><element><id>Relation</id><coordinates><x>598</x><y>84</y><w>30</w><h>100</h></coordinates><panel_attributes>lt=-&gt;&gt;</panel_attributes><additional_attributes>12;14;12;81</additional_attributes></element><element><id>Relation</id><coordinates><x>843</x><y>63</y><w>30</w><h>120</h></coordinates><panel_attributes>lt=-&gt;&gt;</panel_attributes><additional_attributes>12;14;12;102</additional_attributes></element><element><id>Relation</id><coordinates><x>913</x><y>156</y><w>410</w><h>100</h></coordinates><panel_attributes>lt=.&gt;
+catches</panel_attributes><additional_attributes>12;78;87;78;87;24;387;24</additional_attributes></element><element><id>Relation</id><coordinates><x>913</x><y>316</y><w>200</w><h>50</h></coordinates><panel_attributes>lt=.&gt;
+raises</panel_attributes><additional_attributes>12;24;177;24</additional_attributes></element><element><id>Relation</id><coordinates><x>913</x><y>410</y><w>200</w><h>130</h></coordinates><panel_attributes>lt=.&gt;
+raises / catches</panel_attributes><additional_attributes>12;14;67;14;67;107;177;107</additional_attributes></element><element><id>Relation</id><coordinates><x>343</x><y>478</y><w>770</w><h>440</h></coordinates><panel_attributes>lt=.&gt;
+raises / catches</panel_attributes><additional_attributes>12;14;72;14;72;423;697;423;697;267;747;267</additional_attributes></element><element><id>Relation</id><coordinates><x>1280</x><y>189</y><w>70</w><h>180</h></coordinates><panel_attributes>lt=-&gt;&gt;</panel_attributes><additional_attributes>12;157;51;157;51;14</additional_attributes></element><element><id>Relation</id><coordinates><x>1280</x><y>189</y><w>130</w><h>350</h></coordinates><panel_attributes>lt=-&gt;&gt;</panel_attributes><additional_attributes>12;325;105;325;105;14</additional_attributes></element><element><id>Relation</id><coordinates><x>1280</x><y>189</y><w>180</w><h>580</h></coordinates><panel_attributes>lt=-&gt;&gt;</panel_attributes><additional_attributes>12;557;160;557;160;14</additional_attributes></element><element><id>Relation</id><coordinates><x>1373</x><y>36</y><w>30</w><h>140</h></coordinates><panel_attributes>lt=-&gt;&gt;</panel_attributes><additional_attributes>12;119;12;14</additional_attributes></element></diagram>
